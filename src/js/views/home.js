@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
+import { Context } from "../store/appContext";
 import "../../styles/home.css";
+import { useActionData } from "react-router";
 
 export const Home = () => {
+  const {store, actions} = useContext (Context)
   const [personajes, setPersonajes] = React.useState([]);
   const [planetas, setPlanetas] = React.useState([]);
 
@@ -54,7 +57,7 @@ export const Home = () => {
                   </a>
 
                   <button className="btn btn-outline-warning ms-2">
-                    <i className="fa fa-regular fa-heart"></i>
+                    <i className="fa fa-regular fa-heart" onClick={()=>{actions.guardaFavoritos(personaje.name)}}/>
                   </button>
                 </div>
               </div>
@@ -90,7 +93,7 @@ export const Home = () => {
                     Learn More!
                   </button>
                   <button className="btn btn-outline-warning ms-2">
-                    <i className="fa fa-regular fa-heart"></i>
+                  <i className="fa fa-regular fa-heart" onClick={()=>{actions.guardaFavoritos(planeta.name)}}/>
                     {/* <i className="fa  fa-heart"></i> */}
                   </button>
                 </div>

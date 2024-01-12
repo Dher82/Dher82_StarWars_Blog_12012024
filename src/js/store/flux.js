@@ -12,7 +12,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+
+			Favoritos: []
+		
+			
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,8 +41,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+
+			guardaFavoritos(nombreItem){
+				console.log (nombreItem)
+				const store = getStore();
+				const fav = store.Favoritos;
+				const newFav = [...fav, { name: nombreItem, id:fav.length }]
+				setStore({Favoritos: newFav})
+			},
+			eliminaFavorito(id){
+				const store = getStore();
+				const fav = store.Favoritos;
+				const favActualizado = fav.filter((item) => item.id !== id);
+				setStore({Favoritos: favActualizado})
 		}
+	}
 	};
 };
 
